@@ -19,7 +19,31 @@ namespace POC.Helper
             UploadFile,
             DownloadFile,
             ApproveRequest,
-            RejectRequest
+            RejectRequest,
+            ChangePassword,
+            ResetPassword,
+            SendMessage,
+            ReceiveMessage,
+            ShareItem,
+            LikeItem,
+            CommentOnItem,
+            FollowUser,
+            UnfollowUser,
+            AddToFavorites,
+            RemoveFromFavorites,
+            Search,
+            Filter,
+            ExportData,
+            ImportData,
+            GenerateReport,
+            PrintDocument,
+            SubscribeToService,
+            UnsubscribeFromService,
+            StartSession,
+            EndSession,
+            AccessDenied,
+            GrantPermission,
+            RevokePermission
         }
     }
 }

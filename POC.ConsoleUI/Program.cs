@@ -2,6 +2,7 @@
 using System.IO;
 using System.Text.Json;
 using Microsoft.Extensions.Configuration;
+using POC.Helper;
 using POCNT.Application.DTOs;
 using POCNT.Domain.Models;
 
@@ -9,9 +10,11 @@ namespace POC.ConsoleUI
 {
     internal class Program
     {
-
+       
         static async Task Main(string[] args)
         {
+            using HttpClient client = new HttpClient();
+            HttpClientHelper clientHelper = new HttpClientHelper(client);
             string baseUrl = "";
             IConfiguration config = LoadConfiguration();
             while (true) // Loop to keep showing the menu
@@ -36,8 +39,8 @@ namespace POC.ConsoleUI
 
                 if (!string.IsNullOrEmpty(apiUrl))
                 {
-                    string response = await CallApiAsync(apiUrl);
-                    var users = JsonSerializer.Deserialize<List<UserActivitesResponseDto>>(response, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                    var users = await clientHelper.GetAsync<List<UserActivitesResponseDto>>(apiUrl);
+                    //var users = JsonSerializer.Deserialize<List<UserActivitesResponseDto>>(response, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
                     ActivityPrint(users);
                     //Console.WriteLine("\nAPI Response:\n" + response);
                 }
@@ -87,20 +90,21 @@ namespace POC.ConsoleUI
             };
         }
 
-        static async Task<string> CallApiAsync(string url)
-        {
-            using HttpClient client = new HttpClient();
-
-            try
-            {
-                HttpResponseMessage response = await client.GetAsync(url);
-                response.EnsureSuccessStatusCode();
-                return await response.Content.ReadAsStringAsync();
-            }
-            catch (HttpRequestException ex)
-            {
-                return $"Error: {ex.Message}";
-            }
-        }
+        //static async Task<string> CallApiAsync(string url)
+        //{
+            
+        //    using HttpClient client = new HttpClient();
+        //    HttpClientHelper clientHelper = new HttpClientHelper(client);
+        //    try
+        //    {
+                
+        //        //response.EnsureSuccessStatusCode();
+        //        //return await response.Content.ReadAsStringAsync();
+        //    }
+        //    catch (HttpRequestException ex)
+        //    {
+        //        return $"Error: {ex.Message}";
+        //    }
+        //}
     }
 }

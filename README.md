@@ -1,12 +1,13 @@
-# SchoolManagementSystem
+# POC For User Activity Tracking
 
 SchoolManagementProject:
 1.Set up N-Tier Architecture.
 ⦁	Seperate Layer for each project. e.g.
-1.	SMS.Api (Entry Point, Controllers)
-2.	SMS.Application (DTO's, Mappings, Services)
-3.	SMS.Domian (Models, Interfaces)
-4.	SMS.Infrastructure (Data, Migrations, Repositories)
+1.	POC.Api (Entry Point, Controllers)
+2.	POC.Application (DTO's, Mappings, Services)
+2.	POC.ConsoleUI (Input / Output User Interface)
+3.	POC.Domian (Models, Interfaces)
+4.	POC.Infrastructure (Data, Migrations, Repositories)
 So we set each layers as:
 1.	Persentation Layer: Handle user intraction (e.g. Web App or Wen Page)
 2.	Service Layer: Contains Business Logic (e.g. Rules for processing Data)
@@ -22,7 +23,11 @@ KEY CONCEPTS :
 ⦁	Creating Service for each Entity : (e.g, AdminService, TeacherService, StudentService)
 
 WORKFLOW : 
-Http Request (Admin) ====> PRESENTATION LAYER ( Controller recieves req and calls AdminService ) ====> SERVICE LAYER (Service layer calls GetAllAsync on the IAdminRepository) ====>  REPOSITORY LAYER (The AdminRepository fetches all admins record from Database and return to AdminService) ====> SERVICE LAYER AGAIN (AdminService transform the data (e.g. maps <Admin> to <AdminDto>)) and return to Controller ====> PERSENTATION LAYER AGAIN <Result in JSON>.
+Http Request (User) ====> PRESENTATION LAYER ( Controller recieves req and calls UserService ) 
+====> SERVICE LAYER (Service layer calls GetAllAsync on the IUserRepository) 
+====> REPOSITORY LAYER (The UsersRepository fetches all Users record from Database and return to UsersService) 
+====> SERVICE LAYER AGAIN (UserService transform the data (e.g. maps <Users> to <UsersDto>)) and return to Controller 
+====> PERSENTATION LAYER AGAIN <Result in JSON>.
 
 ARCHITECTURE USED:
 1.	Repository Pattren.
