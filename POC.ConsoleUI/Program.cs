@@ -10,7 +10,9 @@ namespace POC.ConsoleUI
 {
     internal class Program
     {
-       
+        const int ActionMostActiveUser = 1;
+        const int ActionAvgActiveUser = 2;
+        const int ActionMostDurationActiveUser = 3;
         static async Task Main(string[] args)
         {
             using HttpClient client = new HttpClient();
@@ -34,15 +36,36 @@ namespace POC.ConsoleUI
                     Console.WriteLine("Exiting...");
                     break;
                 }
-                baseUrl = config["AppSettings:APIBaseUrl"];
+                baseUrl = config["AppSettings:APIBaseUrl"]??string.Empty;
                 string apiUrl = GetApiUrl(baseUrl, input);
 
                 if (!string.IsNullOrEmpty(apiUrl))
                 {
-                    var users = await clientHelper.GetAsync<List<UserActivitesResponseDto>>(apiUrl);
-                    //var users = JsonSerializer.Deserialize<List<UserActivitesResponseDto>>(response, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-                    ActivityPrint(users);
-                    //Console.WriteLine("\nAPI Response:\n" + response);
+                    List<UserActivitesResponseDto>? users;
+                    var queryParams = new Dictionary<string, string>();
+
+                    switch (int.Parse(input))
+                    {
+                        case ActionMostActiveUser:
+                            users  = await clientHelper.GetAsync<List<UserActivitesResponseDto>>(apiUrl, queryParams);
+                            PrintMostActiveUsers(users);
+                            break;
+                        case ActionAvgActiveUser:
+                            users = await clientHelper.GetAsync<List<UserActivitesResponseDto>>(apiUrl, queryParams);
+                            AvgActivePerUser(users);
+                            break;
+                        case ActionMostDurationActiveUser:
+                            Console.WriteLine("\n Please enter number of days data needs to retrive : ");
+                            
+                            var inputDays = Console.ReadLine();
+
+                            queryParams.Add("days", inputDays??"1");
+                            users = await clientHelper.GetAsync<List<UserActivitesResponseDto>>(apiUrl, queryParams);
+                            DurationBasedActiveUser(users);
+                            break;
+                        
+                    }
+                    
                 }
                 else
                 {
@@ -54,21 +77,71 @@ namespace POC.ConsoleUI
             }
         }
 
-        static void ActivityPrint(List<UserActivitesResponseDto>  users)
+        static void PrintMostActiveUsers(List<UserActivitesResponseDto>?  users)
         {
             Console.WriteLine("------------------------------------------------------------------------------");
-            Console.WriteLine("\tUserId \t Name\t\t Action\t\t\t Timestamp");
-            Console.WriteLine("-----------------------------------------------------------------------------");
+            Console.WriteLine("| {0,-10} | {1,-20} | {2,-15} | {3,-25} |", "UserId", "Name", "ActivityCount", "LastActivity");
+            Console.WriteLine("------------------------------------------------------------------------------");
 
-            foreach (var user in users)
+            if (users?.Count > 0)
             {
-                Console.WriteLine($"|\t{user.Id} \t|{user.UserName} \t\t| {user.ActivityType} \t\t\t| {user.ActivityTimeStamp}");
+                foreach (var user in users)
+                {
+                    Console.WriteLine("| {0,-10} | {1,-20} | {2,-15} | {3,-25} |",
+                        user.Id,
+                        user.UserName,
+                        user.ActivityCount,
+                        user.LastActivity.ToString("yyyy-MM-dd HH:mm:ss")); // Format date-time
+                }
             }
-
-            Console.WriteLine("-----------------------------------------------------------------------------");
+            Console.WriteLine("------------------------------------------------------------------------------");
 
         }
 
+        static void AvgActivePerUser(List<UserActivitesResponseDto>? users)
+        {
+            Console.WriteLine("------------------------------------------------------------------------------");
+            Console.WriteLine("| {0,-10} | {1,-20} | {2,-15} | {3,-25} |", "UserId", "Name", "AvgCount", "LastActivity");
+            Console.WriteLine("------------------------------------------------------------------------------");
+
+            if (users?.Count > 0)
+            {
+                foreach (var user in users)
+                {
+                    Console.WriteLine("| {0,-10} | {1,-20} | {2,-15} | {3,-25} |",
+                        user.Id,
+                        user.UserName,
+                        user.AvgCount,
+                        user.LastActivity.ToString("yyyy-MM-dd HH:mm:ss")); // Format date-time
+                }
+            }
+            Console.WriteLine("------------------------------------------------------------------------------");
+
+        }
+
+        static void DurationBasedActiveUser(List<UserActivitesResponseDto>? users)
+        {
+            Console.WriteLine("------------------------------------------------------------------------------");
+            Console.WriteLine("| {0,-10} | {1,-20} | {2,-15} | {3,-25} |", "UserId", "Name", "SessionDuration", "SessionID");
+            Console.WriteLine("------------------------------------------------------------------------------");
+
+            if (users?.Count > 0)
+            {
+                foreach (var user in users)
+                {
+                    decimal sessionDuration = Math.Round(Convert.ToDecimal(user.SessionDuration), 2);
+
+
+                    Console.WriteLine("| {0,-10} | {1,-20} | {2,-15} | {3,-25} |",
+                        user.Id,
+                        user.UserName,
+                       sessionDuration,
+                        user.SessionId); // Format date-time
+                }
+            }
+            Console.WriteLine("------------------------------------------------------------------------------");
+
+        }
 
 
         static IConfiguration LoadConfiguration()
@@ -83,28 +156,12 @@ namespace POC.ConsoleUI
         {
             return option switch
             {
-                "1" => $"{baseUrl}Activities/all",
-                "2" => $"{baseUrl}Activities/all",
-                "3" => $"{baseUrl}Activities/all",
+                "1" => $"{baseUrl}Activities/most-active",
+                "2" => $"{baseUrl}Activities/average-session",
+                "3" => $"{baseUrl}Activities/active-users",
                 _ => string.Empty
             };
         }
 
-        //static async Task<string> CallApiAsync(string url)
-        //{
-            
-        //    using HttpClient client = new HttpClient();
-        //    HttpClientHelper clientHelper = new HttpClientHelper(client);
-        //    try
-        //    {
-                
-        //        //response.EnsureSuccessStatusCode();
-        //        //return await response.Content.ReadAsStringAsync();
-        //    }
-        //    catch (HttpRequestException ex)
-        //    {
-        //        return $"Error: {ex.Message}";
-        //    }
-        //}
     }
 }

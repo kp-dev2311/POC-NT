@@ -18,5 +18,6 @@ namespace POCNT.Domain.Models
 
         public DateTime ActivityTimeStamp { get; set; } = DateTime.UtcNow;
         public int UserId { get; set; }
+        public Users User { get; set; }
     }
 }

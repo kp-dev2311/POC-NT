@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace POC.Helper
 {
@@ -17,9 +18,19 @@ namespace POC.Helper
         }
 
         // GET Request
-        public async Task<T?> GetAsync<T>(string url)
+        public async Task<T?> GetAsync<T>(string url, Dictionary<string, string> queryParams)
         {
-            var response = await _httpClient.GetAsync(url);
+            var uriBuilder = new UriBuilder(url);
+            var query = HttpUtility.ParseQueryString(uriBuilder.Query);
+
+            foreach (var param in queryParams)
+            {
+                query[param.Key] = param.Value;
+            }
+
+            uriBuilder.Query = query.ToString();
+
+            var response = await _httpClient.GetAsync(uriBuilder.ToString());
             return await HandleResponse<T>(response);
         }
 

@@ -21,12 +21,12 @@ namespace POCNT.Api.Controllers
         {
             try
             {
-                var students = await _userActivitiesServiceService.GetUserActivitiesAsync();
-                if (students == null)
+                var userObj = await _userActivitiesServiceService.GetUserActivitiesAsync();
+                if (userObj == null)
                 {
                     return NotFound();
                 }
-                return Ok(students);
+                return Ok(userObj);
             }
             catch (Exception ex)
             {
@@ -40,12 +40,12 @@ namespace POCNT.Api.Controllers
         {
             try
             {
-                var students = await _userActivitiesServiceService.GetUserActivitiesAsync();
-                if (students == null)
+                var userActivities = await _userActivitiesServiceService.GetMostActiveUserAsync();
+                if (userActivities == null)
                 {
                     return NotFound();
                 }
-                return Ok(students);
+                return Ok(userActivities);
             }
             catch (Exception ex)
             {
@@ -58,12 +58,12 @@ namespace POCNT.Api.Controllers
         {
             try
             {
-                var students = await _userActivitiesServiceService.GetUserActivitiesAsync();
-                if (students == null)
+                var userActObj = await _userActivitiesServiceService.GetAvgActivitesUserAsync();
+                if (userActObj == null)
                 {
                     return NotFound();
                 }
-                return Ok(students);
+                return Ok(userActObj);
             }
             catch (Exception ex)
             {
@@ -72,16 +72,18 @@ namespace POCNT.Api.Controllers
         }
 
         [HttpGet("active-users")]
-        public async Task<IActionResult> ActiveUsers()
+        public async Task<IActionResult> ActiveUsers(int days = 1)
         {
             try
             {
-                var students = await _userActivitiesServiceService.GetUserActivitiesAsync();
-                if (students == null)
+                DateTime toDate = DateTime.UtcNow;
+                DateTime fromDate = DateTime.UtcNow.AddDays(-1* days);
+                var usersObj = await _userActivitiesServiceService.GetDurationBasedActiveUsersAsync(fromDate,toDate);
+                if (usersObj == null)
                 {
                     return NotFound();
                 }
-                return Ok(students);
+                return Ok(usersObj);
             }
             catch (Exception ex)
             {
@@ -99,7 +101,7 @@ namespace POCNT.Api.Controllers
             }
             try
             {
-                await _userActivitiesServiceService.CreateStudentAsync(studentDto);
+                await _userActivitiesServiceService.CreateUserActivitiesAsync(studentDto);
                 return Ok();
             }
             catch (Exception ex)

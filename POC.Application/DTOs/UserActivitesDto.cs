@@ -34,8 +34,13 @@ namespace POCNT.Application.DTOs
     {
         public int Id { get; set; }
         public string? ActivityType { get; set; }
+        public string? SessionId { get; set; }
         public string? UserName { get; set; }
         public DateTime ActivityTimeStamp { get; set; }
+        public DateTime LastActivity { get; set; }
+        public int ActivityCount { get; set; }
+        public double AvgCount { get; set; }
+        public double SessionDuration { get; set; }
     }
 
 }
