@@ -43,7 +43,7 @@ namespace POCNT.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Admins");
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("POC.Domain.Models.Student", b =>
@@ -69,7 +69,7 @@ namespace POCNT.Infrastructure.Migrations
 
                     b.HasIndex("TeacherId");
 
-                    b.ToTable("Students");
+                    b.ToTable("UserActivities");
                 });
 
             modelBuilder.Entity("POC.Domain.Models.Teacher", b =>

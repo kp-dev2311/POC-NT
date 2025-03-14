@@ -14,9 +14,8 @@ namespace POCNT.Application.Mappings
         public MappingProfile() 
         {
             // Entity to DTO mappings
-            CreateMap<Admin, AdminDto>().ReverseMap();
-            CreateMap<Teacher, TeacherDto>().ReverseMap();
-            CreateMap<Student, StudentDto>().ReverseMap();
+            CreateMap<Users, UsersDto>().ReverseMap();
+            CreateMap<UserActivities, UserActivitesDto>().ReverseMap();
         }
     }
 }

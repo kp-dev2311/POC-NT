@@ -11,8 +11,8 @@ using POCNT.Infrastructure.Data;
 namespace POCNT.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250204141620_newPropAdded")]
-    partial class newPropAdded
+    [Migration("20250203123313_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

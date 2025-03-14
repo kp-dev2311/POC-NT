@@ -30,6 +30,12 @@ namespace POCNT.Infrastructure.Repositories
             await _context.Set<T>().AddAsync(entity);
             await _context.SaveChangesAsync();
         }
+
+        public async Task CreateAsync(List<T> entities)
+        {
+            await _context.Set<T>().AddRangeAsync(entities);
+            await _context.SaveChangesAsync();
+        }
         public async Task UpdateAsync(T entity)
         {
             _context.Set<T>().Update(entity);

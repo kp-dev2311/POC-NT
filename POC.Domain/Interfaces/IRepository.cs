@@ -11,6 +11,7 @@ namespace POCNT.Domain.Interfaces
         Task<IEnumerable<T>> GetAllAsync();
         Task<T> GetByIdAsync(int id);
         Task CreateAsync(T entity);
+        Task CreateAsync(List<T> entity);
         Task UpdateAsync(T entity);
         Task DeleteAsync(int id);
     }

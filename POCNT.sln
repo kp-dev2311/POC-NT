@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POC.Domain", "POC.Domain\PO
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POC.Infrastructure", "POC.Infrastructure\POC.Infrastructure.csproj", "{C3AC6241-1E64-AD32-D2DF-B56D59D796A6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POC.Helper", "POC.Helper\POC.Helper.csproj", "{BDB00B7F-6BA3-427C-81D5-3B95058B6ECD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POC.ConsoleUI", "POC.ConsoleUI\POC.ConsoleUI.csproj", "{BB8BFC18-6019-442B-BA34-78730F8B5EE8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{C3AC6241-1E64-AD32-D2DF-B56D59D796A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C3AC6241-1E64-AD32-D2DF-B56D59D796A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C3AC6241-1E64-AD32-D2DF-B56D59D796A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDB00B7F-6BA3-427C-81D5-3B95058B6ECD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDB00B7F-6BA3-427C-81D5-3B95058B6ECD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDB00B7F-6BA3-427C-81D5-3B95058B6ECD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDB00B7F-6BA3-427C-81D5-3B95058B6ECD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB8BFC18-6019-442B-BA34-78730F8B5EE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB8BFC18-6019-442B-BA34-78730F8B5EE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB8BFC18-6019-442B-BA34-78730F8B5EE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB8BFC18-6019-442B-BA34-78730F8B5EE8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

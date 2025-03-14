@@ -22,9 +22,8 @@ services.AddAutoMapper(typeof(MappingProfile));
 services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
 //  Register Services for Dependency Injection
-services.AddScoped<AdminService>();
-services.AddScoped<TeacherService>();
-services.AddScoped<StudentService>();
+services.AddScoped<UsersService>();
+services.AddScoped<UserActivitiesService>();
 
 //  Add Controllers and API Behavior Configuration
 services.AddControllers();
@@ -33,7 +32,7 @@ services.AddControllers();
 services.AddEndpointsApiExplorer();
 services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "POC API", Version = "v1" });
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
 });
 
 var app = builder.Build();
@@ -42,7 +41,7 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "POC API v1"));
+    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1"));
 }
 
 app.UseHttpsRedirection();
