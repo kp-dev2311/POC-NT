@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POC.Helper", "POC.Helper\PO
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POC.ConsoleUI", "POC.ConsoleUI\POC.ConsoleUI.csproj", "{BB8BFC18-6019-442B-BA34-78730F8B5EE8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POC.XUnit", "POC.XUnit\POC.XUnit.csproj", "{5D506285-2C5F-4E90-9327-F3C955F05D61}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "poc.web", "POC.Web\poc.web.esproj", "{DBF8D66C-7D93-4B19-5AC2-77E22B34B637}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +49,16 @@ Global
 		{BB8BFC18-6019-442B-BA34-78730F8B5EE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB8BFC18-6019-442B-BA34-78730F8B5EE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB8BFC18-6019-442B-BA34-78730F8B5EE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D506285-2C5F-4E90-9327-F3C955F05D61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D506285-2C5F-4E90-9327-F3C955F05D61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D506285-2C5F-4E90-9327-F3C955F05D61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D506285-2C5F-4E90-9327-F3C955F05D61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBF8D66C-7D93-4B19-5AC2-77E22B34B637}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBF8D66C-7D93-4B19-5AC2-77E22B34B637}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBF8D66C-7D93-4B19-5AC2-77E22B34B637}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{DBF8D66C-7D93-4B19-5AC2-77E22B34B637}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBF8D66C-7D93-4B19-5AC2-77E22B34B637}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBF8D66C-7D93-4B19-5AC2-77E22B34B637}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
