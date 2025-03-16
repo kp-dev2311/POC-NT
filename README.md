@@ -10,9 +10,9 @@ Each layer is responsible for a specific part of the application:
 
 | Layer                     | Description                                                  |
 | ------------------------- | ------------------------------------------------------------ |
-| **1. POC.Api**            | Entry Point (Controllers, API Endpoints) (Startup Prj)                     |
+| **1. POC.Api**            | Entry Point (Controllers, API Endpoints) (Startup Prj)       |
 | **2. POC.Application**    | Contains DTOs, Mappings, and Business Logic Services         |
-| **3. POC.ConsoleUI**      | User Interface (Console-Based UI) (Startup Prj)                           |
+| **3. POC.ConsoleUI**      | User Interface (Console-Based UI) (Startup Prj)              |
 | **4. POC.Domain**         | Defines Models and Interfaces (Core Business Entities)       |
 | **5. POC.Infrastructure** | Handles Database, Migrations, and Repository Implementations |
 
